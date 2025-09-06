@@ -16,7 +16,7 @@ from torch.utils.cpp_extension import (
     CUDA_HOME,
 )
 
-library_name = "extension_cpp"
+library_name = "dynamicemb"
 
 if torch.__version__ >= "2.6.0":
     py_limited_api = True
@@ -27,6 +27,7 @@ else:
 def get_extensions():
     debug_mode = os.getenv("DEBUG", "0") == "1"
     use_cuda = os.getenv("USE_CUDA", "1") == "1"
+    print(f"Debug mode:{debug_mode}\nUse CUDA:{use_cuda}")
     if debug_mode:
         print("Compiling in debug mode")
 
@@ -78,7 +79,7 @@ setup(
     packages=find_packages(),
     ext_modules=get_extensions(),
     install_requires=["torch"],
-    description="Example of PyTorch C++ and CUDA extensions",
+    description="Dynamic embedding of PyTorch C++ and CUDA extensions",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/pytorch/extension-cpp",
