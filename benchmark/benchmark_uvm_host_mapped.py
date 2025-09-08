@@ -31,9 +31,7 @@ def gen_key(batch, hotness, alpha, N, device, permute=None):
     return ret
 
 def plot(datas, labels, num_blocks, file):
-    import matplotlib.pyplot as plt
-    fig, ax = plt.subplots()
-    
+    fig, ax = plt.subplots(figsize=(128, 4)) 
     # 通常无需特别设置 auto aspect，或可省略，除非特殊比例需求
     # ax.set_aspect('auto')
     for data, label in zip(datas, labels):
@@ -195,8 +193,8 @@ def benchmark(num_rows, batch, dim=128, dtype=torch.float32, alpha=1.05):
 
 
 if __name__ == "__main__":
-    test()
-    benchmark_page_size(512 * 1024, 8 * 1024 * 1024, 'test_page_size')
+    #test()
+    #benchmark_page_size(512 * 1024, 8 * 1024 * 1024, 'test_page_size')
     benchmark_page_size(512 * 1024, 32 * 1024 * 1024 * 1024, 'test_TLB_size1', stride=64)
     benchmark_page_size(512 * 1024, 32 * 1024 * 1024 * 1024, 'test_TLB_size2', stride=32)
     
